@@ -35,7 +35,7 @@ On first use, OAuth will open a browser window for Daloopa login. No API keys ne
 |---------|-------------|---------|
 | `/daloopa:setup` | Verify MCP connection, show available skills | `/daloopa:setup` |
 | `/daloopa:tearsheet` | Quick one-page company overview | `/daloopa:tearsheet MSFT` |
-| `/daloopa:earnings` | Full earnings analysis with guidance tracking | `/daloopa:earnings AAPL` |
+| `/daloopa:earnings-review` | Full earnings analysis with guidance tracking | `/daloopa:earnings-review AAPL` |
 | `/daloopa:earnings-prep` | Pre-earnings preparation report for the night before | `/daloopa:earnings-prep AAPL` |
 | `/daloopa:earnings-flash` | Rapid first-read earnings flash | `/daloopa:earnings-flash AAPL` |
 | `/daloopa:guidance-tracker` | Track management guidance accuracy | `/daloopa:guidance-tracker NVDA` |

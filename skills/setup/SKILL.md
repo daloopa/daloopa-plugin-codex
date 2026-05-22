@@ -24,7 +24,7 @@ If this fails:
 Tell the user about the available slash commands:
 
 **Analysis Skills** (all prefixed with `/daloopa:`):
-- `/daloopa:earnings TICKER` — Full earnings analysis with guidance tracking
+- `/daloopa:earnings-review TICKER` — Full earnings analysis with guidance tracking
 - `/daloopa:tearsheet TICKER` — Quick one-page company overview
 - `/daloopa:industry TICKER1 TICKER2 ...` — Cross-company comparison
 - `/daloopa:bull-bear TICKER` — Bull/bear/base scenario framework
