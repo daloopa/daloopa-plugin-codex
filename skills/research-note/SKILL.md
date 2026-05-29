@@ -1,23 +1,22 @@
 ---
 name: research-note
 description: Generate a professional Word document research note
-argument-hint: TICKER
 ---
 
-Generate a professional research note (HTML report) for the company specified by the user: $ARGUMENTS
+Generate a professional research note (HTML report) for the company specified by the user named in the user's request. If no ticker or company is provided, ask for one before proceeding.
 
-**Before starting, read `data-access.md` for data access methods and `design-system.md` for formatting conventions.** Follow the data access detection logic and design system throughout this skill.
+**Before starting, read `../data-access.md` for data access methods and `../design-system.md` for formatting conventions.** Follow the data access detection logic and design system throughout this skill.
 
-This is an orchestrator skill that gathers comprehensive data, then renders a styled HTML report using the HTML Report Template from design-system.md (full CSS inlined, zero dependencies).
+This is an orchestrator skill that gathers comprehensive data, then renders a styled HTML report using the HTML Report Template from `../design-system.md` (full CSS inlined, zero dependencies).
 
 ## Phase A — Company Setup
 Look up the company by ticker using `discover_companies`. Capture:
 - `company_id`
-- `latest_calendar_quarter` — anchor for all period calculations (see `data-access.md` Section 1.5)
+- `latest_calendar_quarter` — anchor for all period calculations (see `../data-access.md` Section 1.5)
 - `latest_fiscal_quarter`
-- Firm name for report attribution (default: "Daloopa") — see `data-access.md` Section 4.5
+- Firm name for report attribution (default: "Daloopa") — see `../data-access.md` Section 4.5
 
-Get current stock price, market cap, shares outstanding, beta, and trading multiples for {TICKER} using the 3-step resolution: (1) MCP market data tools if available, (2) web search, (3) sensible defaults (see data-access.md Section 2 for how to source market data).
+Get current stock price, market cap, shares outstanding, beta, and trading multiples for {TICKER} using the 3-step resolution: (1) MCP market data tools if available, (2) web search, (3) sensible defaults (see `../data-access.md` Section 2 for how to source market data).
 
 Initialize context: `context = {company_name, ticker, date, price, market_cap, firm_name, ...}`
 
@@ -120,7 +119,7 @@ Build `context.capital_allocation`.
 ## Phase G — Valuation (follows /dcf + /comps methodology)
 
 **DCF:**
-- Get risk-free rate using the 3-step resolution: (1) MCP market data tools if available, (2) web search, (3) sensible defaults (see data-access.md Section 2)
+- Get risk-free rate using the 3-step resolution: (1) MCP market data tools if available, (2) web search, (3) sensible defaults (see `../data-access.md` Section 2)
 - Calculate WACC using CAPM
 - Project FCF 5 years manually (describe methodology inline and perform calculations directly)
 - Compute terminal value, implied share price, sensitivity table
@@ -128,8 +127,8 @@ Build `context.capital_allocation`.
 
 **Comps:**
 - Identify 5-8 peers
-- Get peer trading multiples using the 3-step resolution: (1) MCP market data tools if available, (2) web search, (3) sensible defaults (see data-access.md Section 2)
-- If consensus forward estimates are available (data-access.md Section 3), include forward multiples
+- Get peer trading multiples using the 3-step resolution: (1) MCP market data tools if available, (2) web search, (3) sensible defaults (see `../data-access.md` Section 2)
+- If consensus forward estimates are available (`../data-access.md` Section 3), include forward multiples
 - Compute implied valuation range from peer multiples
 - Build `context.comps` (set `context.has_comps = true`)
 
@@ -215,7 +214,7 @@ Also build structured tables for the template:
 
 ## Phase K — Render HTML Report
 
-Using the HTML Report Template from design-system.md, generate a styled HTML report with full CSS inlined. The report should include:
+Using the HTML Report Template from `../design-system.md`, generate a styled HTML report with full CSS inlined. The report should include:
 
 **Header Section:**
 - Company name and ticker
@@ -318,9 +317,9 @@ Verify these keys exist before rendering (set empty string if data unavailable):
 `appendix_content`
 
 ## Output
-Present the styled HTML report directly in the response. Tell the user:
+Save the styled HTML report as a local file and summarize the output. Tell the user:
 - A 3-4 sentence executive summary of the research note
 - Key findings and valuation range
-- Instruct them to save the HTML and open in browser for full formatting
+- Tell them where the HTML file was saved and that it can be opened in a browser for full formatting
 
 **Citation enforcement:** Every financial figure from Daloopa in the HTML report must use citation format: `[$X.XX million](https://daloopa.com/src/{fundamental_id})`. If a number came from `get_company_fundamentals`, it must have a citation link. No exceptions.

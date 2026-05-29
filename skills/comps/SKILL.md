@@ -1,10 +1,9 @@
 ---
 name: comps
 description: Trading comparables analysis with peer multiples and implied valuation
-argument-hint: TICKER
 ---
 
-Build a trading comparables analysis for the company specified by the user: $ARGUMENTS
+Build a trading comparables analysis for the company named in the user's request. If no ticker or company is provided, ask for one before proceeding.
 
 **Before starting, read `../data-access.md` for data access methods and `../design-system.md` for formatting conventions.** Follow the data access detection logic and design system throughout this skill.
 
@@ -62,7 +61,7 @@ For each peer that is available in Daloopa:
 - Calculate 4 quarters backward from `latest_calendar_quarter`. Pull revenue, operating income, net income for those periods.
 - Compute revenue growth YoY, operating margin, net margin
 
-For peers not in Daloopa, rely on market data multiples only (see ../data-access.md Section 2) and note the data source limitation.
+For peers not in Daloopa, rely on market data multiples only (see `../data-access.md` Section 2) and note the data source limitation.
 
 ## 5.5. Peer Operational KPIs
 
@@ -110,7 +109,7 @@ For each:
 Compute range (min to max implied price) and central tendency.
 
 ## 8. Consensus Forward Estimates (if available)
-If consensus estimates are available (see ../data-access.md Section 3):
+If consensus estimates are available (see `../data-access.md` Section 3):
 - Add NTM (next twelve months) revenue and EPS estimates for target and each peer
 - Compute forward P/E and forward EV/EBITDA using consensus NTM estimates
 - Note where the target's forward multiples sit vs the peer group

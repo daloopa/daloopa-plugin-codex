@@ -1,10 +1,9 @@
 ---
 name: dcf
 description: Discounted cash flow valuation with sensitivity analysis
-argument-hint: TICKER
 ---
 
-Build a discounted cash flow (DCF) valuation for the company specified by the user: $ARGUMENTS
+Build a discounted cash flow (DCF) valuation for the company named in the user's request. If no ticker or company is provided, ask for one before proceeding.
 
 **Before starting, read `../data-access.md` for data access methods and `../design-system.md` for formatting conventions.** Follow the data access detection logic and design system throughout this skill.
 
@@ -18,7 +17,7 @@ Look up the company by ticker using `discover_companies`. Capture:
 - Firm name for report attribution (default: "Daloopa") — see `../data-access.md` Section 4.5
 
 ## 2. Market Data
-Get market-side inputs for {TICKER} (see ../data-access.md Section 2 for how to source market data in your environment):
+Get market-side inputs for {TICKER} (see `../data-access.md` Section 2 for how to source market data in your environment):
 - Current price, market cap, shares outstanding, beta
 - 10Y Treasury yield (risk-free rate for WACC)
 
@@ -92,7 +91,7 @@ Sum segment projections to get total revenue for each of 5 years. Show the build
 
 ## 5b. Top-Down FCF Projections (Fallback)
 
-Build 5-year FCF projections. If a projection engine is available (see ../data-access.md Section 5), use it. Otherwise, project manually:
+Build 5-year FCF projections. If a projection engine is available (see `../data-access.md` Section 5), use it. Otherwise, project manually:
 - **Revenue:** Use management guidance for near-term, then decay toward 3% long-term growth
 - **FCF Margin:** Use trailing average, adjust for any clear trends
 - **FCF = Projected Revenue × Projected FCF Margin**
@@ -129,7 +128,7 @@ Highlight the base case cell and the current market price for reference.
 Also show a secondary sensitivity: Revenue Growth vs FCF Margin if data supports it.
 
 ## 9. Consensus Sanity Check (if available)
-If consensus estimates are available (see ../data-access.md Section 3):
+If consensus estimates are available (see `../data-access.md` Section 3):
 - Compare your projected revenue/EPS path to consensus for the next 1-2 years
 - Note where your DCF assumptions diverge from Street expectations
 - If your implied price is significantly above/below consensus target, explain why

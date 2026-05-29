@@ -18,7 +18,7 @@ Check your available tools. If you see Daloopa MCP tools (`discover_companies`, 
 
 Results come back as structured data you can use directly.
 
-If MCP is not available, tell the user to verify their Daloopa MCP connection by running `/daloopa:setup`.
+If MCP is not available, tell the user to run the setup skill or verify that the Daloopa MCP servers are enabled.
 
 ## Section 1.5: Period Determination
 

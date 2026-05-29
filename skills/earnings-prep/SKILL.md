@@ -1,10 +1,9 @@
 ---
 name: earnings-prep
 description: Pre-earnings preparation report for the night before a company reports
-argument-hint: TICKER
 ---
 
-Generate a pre-earnings preparation report for the company specified by the user: $ARGUMENTS
+Generate a pre-earnings preparation report for the company specified by the user named in the user's request. If no ticker or company is provided, ask for one before proceeding.
 
 This is the note a L/S equity analyst reads the night before a company reports — it tells them exactly what to focus on when the print drops.
 
@@ -153,7 +152,7 @@ Identify the 5-7 metrics the analyst should focus on when the print drops. For e
 ## 7. Consensus & Positioning
 Gather available consensus context:
 
-**From data sources (consensus estimates if available per ../data-access.md Section 3):**
+**From data sources (consensus estimates if available per `../data-access.md` Section 3):**
 - Consensus revenue and EPS for the upcoming quarter
 - Number of analysts at Buy / Hold / Sell
 - Consensus price target (median and range)

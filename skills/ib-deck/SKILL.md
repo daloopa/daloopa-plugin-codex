@@ -1,12 +1,11 @@
 ---
 name: ib-deck
 description: Generate an institutional-grade investment banking pitch deck (HTML)
-argument-hint: TICKER [--category ib-advisory|activist-ls]
 ---
 
-Build an institutional-grade pitch deck for the company specified by the user: $ARGUMENTS
+Build an institutional-grade pitch deck for the company named in the user's request. If no ticker or company is provided, ask for one before proceeding.
 
-**Before starting, read `design-system.md` for formatting conventions and `data-access.md` for data access methods.** Also read the reference files in this skill's `references/` directory for slide templates and components.
+**Before starting, read `../design-system.md` for formatting conventions and `../data-access.md` for data access methods.** Also read the reference files in this skill's `references/` directory for slide templates and components.
 
 This skill generates a self-contained HTML presentation that can be opened in a browser and printed to PDF if needed.
 
@@ -20,7 +19,7 @@ Determine the deck category and scope:
 
 **Firm Attribution:**
 - Firm name defaults to "Daloopa". If the user specifies a firm name in their prompt, use that instead.
-- **NEVER hallucinate a firm name** (Goldman Sachs, Morgan Stanley, JPMorgan, etc.). See `data-access.md` Section 4.5.
+- **NEVER hallucinate a firm name** (Goldman Sachs, Morgan Stanley, JPMorgan, etc.). See `../data-access.md` Section 4.5.
 - Include firm name on the cover slide and in all slide footers.
 
 **Gather from the user or infer:**
@@ -31,21 +30,21 @@ Determine the deck category and scope:
 
 ## Phase 2 — Data Gathering
 
-Look up the company by ticker using `discover_companies`. Capture `company_id`, `latest_calendar_quarter`, and `latest_fiscal_quarter`. Use `latest_calendar_quarter` to anchor all period calculations (see `data-access.md` Section 1.5).
+Look up the company by ticker using `discover_companies`. Capture `company_id`, `latest_calendar_quarter`, and `latest_fiscal_quarter`. Use `latest_calendar_quarter` to anchor all period calculations (see `../data-access.md` Section 1.5).
 
 Use Daloopa MCP for all financial data. Target comprehensive coverage:
 - **5+ years of quarterly financials** — calculate 20+ quarters backward from `latest_calendar_quarter` (income statement, balance sheet, cash flow)
 - **Segment and geographic breakdowns**
 - **All company-specific operating KPIs**
-- **6-10 peers** — get trading multiples and fundamentals from Daloopa + market data (see data-access.md Section 2)
-- **Guidance and consensus** (see data-access.md Section 3)
+- **6-10 peers** — get trading multiples and fundamentals from Daloopa + market data (see `../data-access.md` Section 2)
+- **Guidance and consensus** (see `../data-access.md` Section 3)
 - **SEC filings** — risk factors, growth drivers, M&A commentary, strategic language
 
 Get market data for the target and all peers:
 - Current price, market cap, shares outstanding, beta, trading multiples
 - Historical price data for TSR comparison
 
-Market data resolution order (see `data-access.md` Section 2):
+Market data resolution order (see `../data-access.md` Section 2):
 1. MCP market data tools (if available)
 2. Web search for current quotes, multiples, and historical data
 3. Sensible defaults (industry-average multiples if specific data unavailable)
@@ -91,7 +90,7 @@ Generate a self-contained HTML file following the templates in `references/slide
 - Every content slide must have minimum 2-3 data-rich elements (tables, charts, commentary)
 - No sparse slides — fill the space with analysis
 - All financial figures must include Daloopa citations
-- Follow design-system.md for colors, typography, number formatting
+- Follow `../design-system.md` for colors, typography, number formatting
 - Use CSS `@page` with landscape orientation, 16:9 aspect ratio (1280×720px per slide)
 - Each slide is a `<div class="slide">` with `page-break-after: always`
 - All data displayed in tables (no chart generation)
@@ -100,7 +99,7 @@ See `references/ib-advisory-patterns.md` for valuation methodology templates.
 
 ## Phase 5 — Output
 
-Present the complete HTML deck directly in your response. Use the HTML Report Template structure from `design-system.md` with slide-specific CSS from `references/slide-templates.md`.
+Save the complete HTML deck as a local file and summarize the output. Use the HTML Report Template structure from `../design-system.md` with slide-specific CSS from `references/slide-templates.md`.
 
 Tell the user:
 - The deck is ready to view — open in any browser

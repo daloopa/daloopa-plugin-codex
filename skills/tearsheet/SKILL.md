@@ -1,10 +1,9 @@
 ---
 name: tearsheet
 description: Quick one-page company overview and snapshot
-argument-hint: TICKER
 ---
 
-Generate a concise company tearsheet for the company specified by the user: $ARGUMENTS
+Generate a concise company tearsheet for the company specified by the user named in the user's request. If no ticker or company is provided, ask for one before proceeding.
 
 This should be a quick, one-page overview — the kind of snapshot an analyst pulls up before a meeting.
 

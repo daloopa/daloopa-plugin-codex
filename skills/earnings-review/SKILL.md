@@ -1,10 +1,9 @@
 ---
 name: earnings-review
 description: Full earnings analysis with guidance tracking for a given company
-argument-hint: TICKER
 ---
 
-Perform a comprehensive earnings analysis for the company specified by the user: $ARGUMENTS
+Perform a comprehensive earnings analysis for the company named in the user's request. If no ticker or company is provided, ask for one before proceeding.
 
 **Before starting, read `../data-access.md` for data access methods and `../design-system.md` for formatting conventions.** Follow the data access detection logic and design system throughout this skill.
 
@@ -102,7 +101,7 @@ Search for guidance series (revenue guidance, EPS guidance, margin guidance, OpE
 If no formal guidance series exist, note that the company does not provide quantitative guidance.
 
 ## 6. Consensus Context (if available)
-If consensus estimates are available (see ../data-access.md Section 3), add:
+If consensus estimates are available (see `../data-access.md` Section 3), add:
 - Consensus revenue and EPS vs actual results — beat/miss vs Street
 - Estimate revision trends (are estimates moving up or down?)
 - Note the source of consensus data used

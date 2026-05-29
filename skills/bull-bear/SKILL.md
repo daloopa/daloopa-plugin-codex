@@ -1,10 +1,9 @@
 ---
 name: bull-bear
 description: Bull/bear/base case scenario framework for a given company
-argument-hint: TICKER
 ---
 
-Build a bull/bear/base case scenario framework for the company specified by the user: $ARGUMENTS
+Build a bull/bear/base case scenario framework for the company named in the user's request. If no ticker or company is provided, ask for one before proceeding.
 
 **Before starting, read `../data-access.md` for data access methods and `../design-system.md` for formatting conventions.** Follow the data access detection logic and design system throughout this skill.
 
@@ -63,7 +62,7 @@ Search SEC filings/documents across multiple queries. If any search returns empt
 - **Macro/regulatory**: Try "tariff", "regulatory"; fallback to "geopolitical", "compliance"
 
 ## 5. Consensus Positioning (if available)
-If consensus estimates are available (see ../data-access.md Section 3), note:
+If consensus estimates are available (see `../data-access.md` Section 3), note:
 - Where consensus revenue/EPS sits relative to your base case
 - Whether the market is positioned closer to your bull or bear case
 - Recent estimate revision trends (optimistic vs pessimistic drift)

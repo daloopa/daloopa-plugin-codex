@@ -1,22 +1,21 @@
 ---
 name: comp-sheet
 description: Build an industry comp sheet Excel model with deep operational KPIs
-argument-hint: TICKER
 ---
 
-Build a multi-company industry comp sheet Excel model for the company specified by the user: $ARGUMENTS
+Build a multi-company industry comp sheet Excel model for the company named in the user's request. If no ticker or company is provided, ask for one before proceeding.
 
 This produces an interactive `.xlsx` workbook — the kind of comp sheet every analyst on a coverage team maintains. Multi-company, multi-tab, with deep operational KPIs alongside standard financials.
 
-**Before starting, read `data-access.md` for data access methods and `design-system.md` for formatting conventions.** Follow the data access detection logic and design system throughout this skill.
+**Before starting, read `../data-access.md` for data access methods and `../design-system.md` for formatting conventions.** Follow the data access detection logic and design system throughout this skill.
 
 Follow these steps:
 
 ## 1. Company & Peer Setup
 
-Look up the target company by ticker using `discover_companies`. Capture `company_id`, `latest_calendar_quarter` (anchor for all period calculations — see `data-access.md` Section 1.5), and `latest_fiscal_quarter`. Note the firm name for report attribution (default: "Daloopa") — see `data-access.md` Section 4.5.
+Look up the target company by ticker using `discover_companies`. Capture `company_id`, `latest_calendar_quarter` (anchor for all period calculations — see `../data-access.md` Section 1.5), and `latest_fiscal_quarter`. Note the firm name for report attribution (default: "Daloopa") — see `../data-access.md` Section 4.5.
 
-Then identify 6-10 comparable companies using the same logic as `/comps`:
+Then identify 6-10 comparable companies using the same logic as the comps skill:
 - **Direct competitors** in the same market
 - **Business model peers** (similar revenue model)
 - **Size peers** (similar market cap range)
@@ -50,7 +49,7 @@ For each company (target + all peers), pull from Daloopa:
 - **Industrials/Energy**: backlog, book-to-bill, utilization, production volumes, reserves
 
 **Stock prices & valuation multiples:**
-Use `get_stock_prices` (see `data-access.md` Section 1.7) to pull prices for ALL companies in a single batch call. Get:
+Use `get_stock_prices` (see `../data-access.md` Section 1.7) to pull prices for ALL companies in a single batch call. Get:
 - Current price: `dates` = 3 most recent calendar days for all company_ids
 - Quarter-end prices: `dates` = quarter-end dates matching the financial periods (for historical multiples)
 
@@ -65,7 +64,7 @@ Then compute valuation metrics by combining stock prices with Daloopa fundamenta
 - **FCF Yield** = FCF (trailing 4Q) / Market Cap
 - **Dividend Yield** = Dividends Paid (trailing 4Q) / Market Cap
 
-For beta, use web search (see `data-access.md` Section 2). For forward multiples, use consensus estimates if available (Section 3).
+For beta, use web search (see `../data-access.md` Section 2). For forward multiples, use consensus estimates if available (Section 3).
 
 ## 3. KPI Discovery & Mapping
 
@@ -106,7 +105,7 @@ For each company, calculate:
 
 ## 5. Build Excel Workbook
 
-Generate a React artifact that uses SheetJS (xlsx library) to build and download the Excel file directly in the user's browser.
+Generate the Excel workbook directly as a local `.xlsx` file. For Codex, prefer bundled spreadsheet tooling or Python/openpyxl when available.
 
 The workbook must contain 8 tabs with the following structure:
 
@@ -179,17 +178,17 @@ Full quarterly appendix for each company:
 
 **Styling requirements:**
 - Apply the design system color palette (Navy #1B2A4A headers, Steel Blue #4A6FA5 accents)
-- Number formatting per design-system.md conventions
+- Number formatting per `../design-system.md` conventions
 - Bold headers, freeze panes on all tabs
 - Conditional formatting: green for positive growth, red for negative
 - Auto-adjust column widths
 
-The React artifact should:
-1. Import the SheetJS library (xlsx)
+The workbook generation should:
+1. Use the best available spreadsheet-generation library
 2. Construct all 8 worksheets programmatically
 3. Apply styling (bold headers, number formats, colors)
-4. Generate the .xlsx file
-5. Trigger browser download with filename: `{TARGET_TICKER}_comp_sheet_{DATE}.xlsx`
+4. Generate the `.xlsx` file
+5. Save the workbook as `reports/{TARGET_TICKER}_comp_sheet_{DATE}.xlsx`
 
 ## 6. Output Summary
 

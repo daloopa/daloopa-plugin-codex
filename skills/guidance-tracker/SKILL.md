@@ -1,10 +1,9 @@
 ---
 name: guidance-tracker
 description: Track management guidance accuracy over time for a given company
-argument-hint: TICKER
 ---
 
-Track management guidance accuracy for the company specified by the user: $ARGUMENTS
+Track management guidance accuracy for the company named in the user's request. If no ticker or company is provided, ask for one before proceeding.
 
 **Before starting, read `../data-access.md` for data access methods and `../design-system.md` for formatting conventions.** Follow the data access detection logic and design system throughout this skill.
 

@@ -1,23 +1,22 @@
 ---
 name: build-model
 description: Build a multi-tab Excel financial model
-argument-hint: TICKER
 ---
 
-Build a comprehensive Excel financial model (.xlsx) for the company specified by the user: $ARGUMENTS
+Build a comprehensive Excel financial model (.xlsx) for the company named in the user's request. If no ticker or company is provided, ask for one before proceeding.
 
-**Before starting, read `data-access.md` for data access methods and `design-system.md` for formatting conventions.** Follow the data access detection logic and design system throughout this skill.
+**Before starting, read `../data-access.md` for data access methods and `../design-system.md` for formatting conventions.** Follow the data access detection logic and design system throughout this skill.
 
-This skill gathers all available financial data and builds a multi-tab Excel model as a React artifact using SheetJS (xlsx library) that the user can download directly in their browser.
+This skill gathers all available financial data and builds a multi-tab Excel model saved as `reports/{TICKER}_model.xlsx`.
 
 ## Phase 1 — Company Setup
 Look up the company by ticker using `discover_companies`. Capture:
 - `company_id`
-- `latest_calendar_quarter` — anchor for all period calculations (see `data-access.md` Section 1.5)
+- `latest_calendar_quarter` — anchor for all period calculations (see `../data-access.md` Section 1.5)
 - `latest_fiscal_quarter`
-- Firm name for report attribution (default: "Daloopa") — see `data-access.md` Section 4.5
+- Firm name for report attribution (default: "Daloopa") — see `../data-access.md` Section 4.5
 
-Get current stock price, market cap, shares outstanding, beta, and trading multiples for {TICKER}. Use the 3-step resolution: (1) MCP market data tools if available, (2) web search, (3) sensible defaults (see data-access.md Section 2).
+Get current stock price, market cap, shares outstanding, beta, and trading multiples for {TICKER}. Use the 3-step resolution: (1) MCP market data tools if available, (2) web search, (3) sensible defaults (see `../data-access.md` Section 2).
 
 ## Phase 2 — Comprehensive Data Pull
 Calculate periods backward from `latest_calendar_quarter`. Pull as much data as Daloopa has for this company. Target 8-16 quarters.
@@ -76,7 +75,7 @@ Calculate periods backward from `latest_calendar_quarter`. Pull as much data as 
 ## Phase 3 — Market Data & Peers
 - Identify 5-8 peers and get their trading multiples using the same 3-step resolution: (1) MCP market data tools, (2) web search, (3) sensible defaults
 - Get risk-free rate using the same 3-step resolution
-- If consensus forward estimates are available (data-access.md Section 3), include NTM estimates for peers
+- If consensus forward estimates are available (`../data-access.md` Section 3), include NTM estimates for peers
 
 ## Phase 4 — Projections
 Build forward estimates using the following methodology:
@@ -99,7 +98,7 @@ Calculate:
 - **Sensitivity Matrix:** WACC (7 values: -3% to +3% from base) × Terminal Growth (6 values: 1.5% to 4.0%).
 
 ## Phase 6 — Build Excel Model
-Generate a React artifact that builds the .xlsx file using SheetJS (xlsx library). The artifact should:
+Generate the `.xlsx` file directly using the best available spreadsheet-generation workflow. For Codex, prefer bundled spreadsheet tooling or Python/openpyxl when available. The workbook should:
 
 1. Create 8 tabs with the following structure:
 
@@ -158,19 +157,19 @@ Generate a React artifact that builds the .xlsx file using SheetJS (xlsx library
 - Key model outputs: Trailing revenue, Projected revenue growth, Trailing/Projected margins
 - Same formatting standards
 
-2. Apply design-system.md formatting conventions:
+2. Apply `../design-system.md` formatting conventions:
 - Number format: $X.Xbn for large numbers, X.X% for percentages, X.Xx for multiples
 - Color palette: Navy #1B2A4A (headers), Steel Blue #4A6FA5 (sub-headers), Gold #C5A55A (highlights), Green #27AE60 (positive), Red #C0392B (negative)
 - Bold headers, frozen top row and left column
 - Yellow fill (#FFEB3B) for editable input cells
 
-3. Include a download button that triggers the .xlsx file download with filename: `{TICKER}_model.xlsx`
+3. Save the workbook as `reports/{TICKER}_model.xlsx`
 
 ## Output
-Present the React artifact directly to the user with:
+Save the generated workbook to `reports/{TICKER}_model.xlsx` and tell the user:
 - Summary of what tabs were built
 - Key model outputs: trailing revenue, projected revenue growth, implied DCF value, peer-implied range
 - Note that yellow cells in the Projections tab are editable inputs
-- Instruction to click the download button to save the .xlsx file
+- Instruction to open the saved `.xlsx` file
 
 All financial figures gathered must use Daloopa citation format: [$X.XX million](https://daloopa.com/src/{fundamental_id})

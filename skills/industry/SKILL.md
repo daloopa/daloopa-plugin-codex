@@ -1,10 +1,9 @@
 ---
 name: industry
 description: Cross-company industry comparison across multiple tickers
-argument-hint: TICKER1 TICKER2 ...
 ---
 
-Perform an industry comparison across the companies specified by the user: $ARGUMENTS
+Perform an industry comparison across the companies named in the user's request. If no ticker or company is provided, ask for one before proceeding.
 
 The user will provide multiple tickers separated by spaces (e.g., "AAPL MSFT GOOG AMZN").
 

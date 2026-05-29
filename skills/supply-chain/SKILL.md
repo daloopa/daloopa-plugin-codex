@@ -1,10 +1,10 @@
 ---
 name: supply-chain
-description: Interactive supply chain dashboard mapping suppliers, customers, and financial interdependencies
-argument-hint: TICKER
+description: Interactive supply chain dashboard mapping suppliers, customers, and
+  financial interdependencies
 ---
 
-Generate an interactive supply chain dashboard for the company specified by the user: $ARGUMENTS
+Generate an interactive supply chain dashboard for the company named in the user's request. If no ticker or company is provided, ask for one before proceeding.
 
 **Before starting, read `../data-access.md` for data access methods and `../design-system.md` for formatting conventions.** Follow the data access detection logic and design system throughout this skill.
 

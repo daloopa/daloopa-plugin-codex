@@ -1,10 +1,10 @@
 ---
 name: precedent-transactions
-description: Precedent M&A transactions analysis with deal multiples and acquisition history
-argument-hint: TICKER
+description: Precedent M&A transactions analysis with deal multiples and acquisition
+  history
 ---
 
-Build a precedent transactions analysis for the company specified by the user: $ARGUMENTS
+Build a precedent transactions analysis for the company named in the user's request. If no ticker or company is provided, ask for one before proceeding.
 
 This is the third pillar of valuation (alongside trading comps and DCF) — it answers: what have acquirers actually paid for businesses like this one? The output is two tables: comparable M&A transactions with deal multiples, and the subject company's own acquisition history.
 
