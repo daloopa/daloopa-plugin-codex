@@ -19,6 +19,7 @@ If this fails:
 - Check that `.mcp.json` is present and configured for the Daloopa MCP servers.
 - In Codex, reinstall or reload the plugin after changing MCP configuration.
 - In ChatGPT, verify that the Daloopa MCP connector or equivalent tool access is enabled.
+- If the server returns `401` or `Reauthentication required`, restart the Daloopa OAuth/login flow in the current environment.
 - On first use, OAuth may open a browser window for Daloopa login.
 
 ## Step 3: Quick Tour
