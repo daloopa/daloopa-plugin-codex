@@ -22,7 +22,7 @@ Financial analysis skills powered by [Daloopa](https://daloopa.com) institutiona
 Validate the plugin locally:
 
 ```bash
-python3 /Users/corymchattie/.codex/skills/.system/plugin-creator/scripts/validate_plugin.py /Users/corymchattie/Projects/plugin-codex
+python3 /Users/corymchattie/.codex/skills/.system/plugin-creator/scripts/validate_plugin.py /Users/corymchattie/Projects/daloopa-plugin-codex
 ```
 
 Validate all source skills:
@@ -31,7 +31,7 @@ Validate all source skills:
 find skills -mindepth 1 -maxdepth 1 -type d -exec python3 /Users/corymchattie/.codex/skills/.system/skill-creator/scripts/quick_validate.py {} \;
 ```
 
-This repo is ready to be added to a Codex marketplace or installed through the local Codex plugin workflow. The public plugin name is `daloopa`. This repo intentionally has no Git remote until `https://github.com/daloopa/plugin-codex` exists.
+This repo is ready to be added to a Codex marketplace or installed through the local Codex plugin workflow. The public plugin name is `daloopa`.
 
 Start with:
 
@@ -95,5 +95,5 @@ Every Daloopa-sourced financial figure should include a citation link back to th
 ## Related Repos
 
 - This repo is the Codex and ChatGPT skills distribution.
-- The Claude distribution lives in the sibling `plugin-claude` repo.
+- The Claude distribution lives in the sibling [`daloopa-plugin-claude`](https://github.com/daloopa/daloopa-plugin-claude) repo.
 - For enhanced infrastructure and application code, see [github.com/daloopa/investing](https://github.com/daloopa/investing).
