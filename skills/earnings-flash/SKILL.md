@@ -3,9 +3,9 @@ name: earnings-flash
 description: Rapid first-read earnings flash for a given company
 ---
 
-Generate a rapid earnings flash for the company specified by the user named in the user's request. If no ticker or company is provided, ask for one before proceeding.
+Generate a rapid earnings flash for the company named in the user's request. If no ticker or company is provided, ask for one before proceeding.
 
-This is a lightweight, speed-focused version of the earnings-review skill — designed for a quick first read within minutes of a filing. It pulls just enough context from Daloopa to frame BEAT/MISS verdicts, then focuses on what's new and surprising.
+This is a lightweight, speed-focused version of `/earnings-review` — designed for a quick first read within minutes of a filing. It pulls just enough context from Daloopa to frame BEAT/MISS verdicts, then focuses on what's new and surprising.
 
 **Before starting, read `../data-access.md` for data access methods and `../design-system.md` for formatting conventions.** Follow the data access detection logic and design system throughout this skill.
 
@@ -32,7 +32,7 @@ Calculate 4 quarters backward from `latest_calendar_quarter`. Search for and pul
 - Operating Cash Flow
 - Free Cash Flow (or CapEx to compute it)
 
-This is lighter than the earnings-review skill (4Q vs 8Q, no cost structure breakdown). The goal is just enough history to frame the latest quarter's results — not a full trend analysis.
+This is lighter than `/earnings-review` (4Q vs 8Q, no cost structure breakdown). The goal is just enough history to frame the latest quarter's results — not a full trend analysis.
 
 ## 3. Company-Specific KPIs
 
@@ -148,7 +148,7 @@ Add a disclaimer after the flash banner:
 ```html
 <p style="font-size: 10px; color: #6C757D; font-style: italic; margin-bottom: 16px;">
     This is a rapid first-read summary. For full analysis with 8-quarter trends, cost structure,
-    and competitive read-throughs, run the earnings-review skill for {TICKER}.
+    and competitive read-throughs, run /earnings-review {TICKER}.
 </p>
 ```
 

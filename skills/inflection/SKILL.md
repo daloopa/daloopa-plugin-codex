@@ -1,7 +1,6 @@
 ---
 name: inflection
-description: Auto-detect biggest acceleration/deceleration inflections across all
-  metrics
+description: Auto-detect biggest acceleration/deceleration inflections across all metrics
 ---
 
 Detect the biggest financial and operating inflections for the company named in the user's request. If no ticker or company is provided, ask for one before proceeding.

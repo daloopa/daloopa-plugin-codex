@@ -1,7 +1,6 @@
 ---
 name: capital-allocation
-description: Deep dive into capital deployment, buybacks, dividends, and shareholder
-  yield
+description: Deep dive into capital deployment, buybacks, dividends, and shareholder yield
 ---
 
 Perform a deep dive into capital allocation for the company named in the user's request. If no ticker or company is provided, ask for one before proceeding.
@@ -18,7 +17,7 @@ Look up the company by ticker using `discover_companies`. Capture:
 - Firm name for report attribution (default: "Daloopa") — see `../data-access.md` Section 4.5
 
 ## 2. Market Data
-Get the current stock price, market cap, and shares outstanding for {TICKER} (see `../data-access.md` Section 2 for how to source market data in your environment).
+Get the current stock price, market cap, and shares outstanding for {TICKER} (see ../data-access.md Section 2 for how to source market data in your environment).
 - This is needed to compute yields and per-share metrics
 
 If market data is unavailable, note that market-derived metrics (yields, etc.) cannot be computed and proceed with Daloopa data only.
@@ -133,7 +132,7 @@ Assess whether the company is adequately reinvesting in its business or funding 
 - Is R&D/revenue trending down while buybacks are increasing? This may indicate the company is funding shareholder returns by underinvesting in innovation.
 - Is CapEx/revenue declining while the business requires sustained infrastructure investment (e.g., cloud, manufacturing, stores)?
 - Are growth KPIs (subscriber adds, customer growth, same-store sales) deteriorating while capital returns are at record levels? This is a red flag — the company may be harvesting rather than growing.
-- Compare R&D intensity and CapEx intensity vs peers (if available from the industry or comps skills). Is the company investing more or less than competitors?
+- Compare R&D intensity and CapEx intensity vs peers (if available from /industry or /comps data). Is the company investing more or less than competitors?
 
 **Value creation vs extraction verdict:**
 - Net assessment: Is the company's capital allocation creating long-term value (reinvesting at high ROIC, buying back cheap stock, growing dividends sustainably) or extracting value (under-investing to fund buybacks at premium valuations, leveraging up for returns)?

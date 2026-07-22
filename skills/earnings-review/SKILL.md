@@ -101,7 +101,7 @@ Search for guidance series (revenue guidance, EPS guidance, margin guidance, OpE
 If no formal guidance series exist, note that the company does not provide quantitative guidance.
 
 ## 6. Consensus Context (if available)
-If consensus estimates are available (see `../data-access.md` Section 3), add:
+If consensus estimates are available (see ../data-access.md Section 3), add:
 - Consensus revenue and EPS vs actual results — beat/miss vs Street
 - Estimate revision trends (are estimates moving up or down?)
 - Note the source of consensus data used
@@ -132,6 +132,8 @@ Also pull the current stock price (3 most recent calendar days) so the report in
 Run 2 WebSearch queries to add external context around the earnings:
 1. `"{TICKER} {company_name} earnings {latest_quarter} {year}"` — coverage and analyst reactions
 2. `"{TICKER} analyst price target {year}"` — sell-side sentiment
+
+**Source quality (MANDATORY):** Follow `../data-access.md` Section 2.5 — cite only primary sources (SEC filings, IR pages, press releases, transcripts) and Tier-1 financial press (Reuters, Bloomberg, WSJ, FT). Never use or cite Yahoo Finance editorial, Benzinga, Seeking Alpha, Motley Fool, Zacks, TipRanks, StockTwits, Reddit, or similar aggregators/blogs.
 
 Distill into a brief **Earnings Context** block (3-5 bullet points):
 - How did the stock react to earnings? (use the actual price data from `get_stock_prices`, not just search results)

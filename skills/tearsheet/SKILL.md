@@ -3,7 +3,7 @@ name: tearsheet
 description: Quick one-page company overview and snapshot
 ---
 
-Generate a concise company tearsheet for the company specified by the user named in the user's request. If no ticker or company is provided, ask for one before proceeding.
+Generate a concise company tearsheet for the company named in the user's request. If no ticker or company is provided, ask for one before proceeding.
 
 This should be a quick, one-page overview — the kind of snapshot an analyst pulls up before a meeting.
 
@@ -102,6 +102,8 @@ This goes at the top of the report, right after the Company Overview — it give
 Run 2 WebSearch queries to gather recent context:
 1. `"{TICKER} {company_name} news {current_year}"` — recent headlines
 2. `"{TICKER} catalysts risks {current_year}"` — forward-looking events
+
+**Source quality (MANDATORY):** Follow `../data-access.md` Section 2.5 — cite only primary sources (SEC filings, IR pages, press releases, transcripts) and Tier-1 financial press (Reuters, Bloomberg, WSJ, FT). Never use or cite Yahoo Finance editorial, Benzinga, Seeking Alpha, Motley Fool, Zacks, TipRanks, StockTwits, Reddit, or similar aggregators/blogs.
 
 Distill into **3-5 key events** from the last 6 months, reverse chronological. Each event: date, one-line headline, sentiment tag (Positive / Negative / Mixed / Upcoming). Keep it tight — this is a tearsheet, not a research note.
 
